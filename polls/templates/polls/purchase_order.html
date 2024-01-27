@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'polls/css/style.css' %}">
+    <title>Invoice App - Purchase order</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <ul>
+            <li class="tab-link active" data-tab="invoice-of-Orders"><a href="{% url 'polls:invoice_of_sales' %}">Invoice of order</a></li>
+            <li class="tab-link" data-tab="purchase-order"><a href="#">Purchase order</a></li>
+            <li class="tab-link" data-tab="reports"><a href="{% url 'polls:add_item' %}">Add item</a></li>
+            <li class="tab-link" data-tab="income-and-expenditure"><a href="{% url 'polls:income_and_expenditure' %}">Income and Expenditure</a></li>
+            <li class="tab-link" data-tab="reports"><a href="{% url 'polls:reports' %}">Reports</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div id="invoice-of-Orders" class="tab-content">
+            <h2>Purchase order</h2>
+            <form id="invoiceForm">
+                {% csrf_token %}
+                <label for="supplierInput">Supplier:</label>
+                <input type="text" id="supplierInput" list="supplierList" name="supplier">
+                <datalist id="supplierList">
+                    {% for supplier in suppliers %}
+                        <option value="{{ supplier.sName }}">
+                    {% endfor %}
+                </datalist>
+
+                <label for="invoiceDate">Date:</label>
+                <input type="date" id="invoiceDate" name="pubDate" value="{{ current_date }}">
+
+                <br>
+
+                <label for="total">Total order amount:</label>
+                <input type="text" id="total" name="total" value="0" readonly>
+
+                <button type="button" id="calculateButton">Calculate Total</button>
+                <button type="button" id="saveButton">Save</button>
+            </form>
+
+            <h2>Items</h2>
+            <table class="item" id="itemTable">
+                <thead>
+                    <tr>
+                        <th>Item name</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total Amount</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="itemTableBody">
+                    {% for item in inventory_data %}
+                        <tr>
+                            <td>{{ item.item }}</td>
+                            <td>{{ item.description }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.purchasePrice }}</td>
+                            <td class="total_amount"></td>
+                            <td>
+                                <input
+                                    type="number"
+                                    class="amountInput"
+                                    data-item-id="{{ item.id }}"
+                                    min="0"
+                                    step="1"
+                                    name="amount_{{ item.id }}"
+                                >
+                                <span class="error-message"></span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+    </div>
+    <script src="{% static 'polls/js/script2.js' %}"></script>
+</body>
+</html>

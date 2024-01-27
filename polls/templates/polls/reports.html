@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'polls/css/style.css' %}">
+    <title>Invoice App - Reports</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <ul>
+            <li class="tab-link" data-tab="invoice-of-sales"><a href="{% url 'polls:invoice_of_sales' %}">Invoice of sales</a></li>
+            <li class="tab-link" data-tab="purchase-order"><a href="{% url 'polls:purchase_order' %}">Purchase order</a></li>
+            <li class="tab-link" data-tab="reports"><a href="{% url 'polls:add_item' %}">Add item</a></li>
+            <li class="tab-link" data-tab="income-and-expenditure"><a href="{% url 'polls:income_and_expenditure' %}">Income and Expenditure</a></li>
+            <li class="tab-link active" data-tab="reports"><a href="#">Reports</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div id="reports" class="tab-content">
+            <!-- Treść zawartości dla zakładki "Reports" -->
+            <h2>Reports</h2>
+            <p>Tutaj znajduje się zawartość zakładki Reports.</p>
+        </div>
+    </div>
+
+    <script src="{% static 'polls/js/script.js' %}"></script>
+</body>
+
+</html>
