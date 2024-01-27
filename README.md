@@ -48,9 +48,3 @@ Copy code
 python manage.py runserver
 Access the system by opening your web browser and navigating to http://localhost:8000/
 Troubleshooting:
-
-If you encounter any issues during installation or usage, please refer to the system's documentation or contact our support team for assistance.
-Contact Support:
-
-If you require further assistance, encounter errors, or have any questions, please don't hesitate to contact our support team at support@craftbiz.com.
-Thank you for choosing the CraftBiz Computer System. We hope this system enhances your business operations and makes managing your inventory and sales a breeze
