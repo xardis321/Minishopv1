@@ -47,4 +47,4 @@ Start the development server with the following command:
 Copy code
 python manage.py runserver
 Access the system by opening your web browser and navigating to http://localhost:8000/
-Troubleshooting:
+By xardis321
